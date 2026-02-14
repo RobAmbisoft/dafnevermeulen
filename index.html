@@ -3,128 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mijn Pagina</title>
+    <title>Dafne Vermeulen</title>
 
     <style>
-        /* Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-            line-height: 1.6;
-            color: #222;
-            background: #f4f6f8;
+        body{
+            font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+            line-height:1.6;
+            color:#f4f4f4;
+
+            background:url("background.png") no-repeat center center fixed;
+            background-size:cover;
         }
 
-        /* Centrale container */
-        .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 20px;
-            text-align: center;
+        /* zachte overlay zodat tekst leesbaar blijft */
+        body::before{
+            content:"";
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,0.25);
+            backdrop-filter:blur(2px);
+            z-index:-1;
         }
 
-        /* Groot bovenplaatje */
-     .hero {
-    width: 100%;
-    margin-bottom: 30px;
-}
+        /* content card */
+        .container{
+            max-width:900px;
+            margin:40px auto;
+            padding:30px 24px;
+            text-align:center;
 
-.hero img {
-    width: 50%;
-    height: auto;              /* behoudt juiste verhouding */
-    display: block;
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-}
-
-        h1 {
-            margin-bottom: 10px;
+            background:rgba(255,255,255,0.05);
+            border-radius:24px;
+            backdrop-filter:blur(6px);
+            box-shadow:0 18px 50px rgba(0,0,0,0.35);
         }
 
-        p {
-            margin-bottom: 25px;
-            color: #555;
+        /* header afbeelding */
+        .header{
+            display:flex;
+            justify-content:center;
+            margin-bottom:24px;
         }
 
-        /* Video grid */
-       .video-grid {
-    display: flex;
-    justify-content: center;   /* centreert alles */
-    gap: 20px;
-    flex-wrap: wrap;           /* breekt netjes af op mobiel */
-    margin-bottom: 30px;
-}
+        .header img{
+            width:min(420px,90%);
+            border-radius:20px;
+            box-shadow:0 12px 32px rgba(0,0,0,0.45);
+        }
 
-        /* Vanaf tablet: 2 naast elkaar */
-        @media (min-width: 600px) {
-            .video-grid {
-                grid-template-columns: 1fr 1fr;
+        /* titel */
+        h1{
+            font-size:clamp(28px,4vw,40px);
+            margin-bottom:12px;
+            text-shadow:0 4px 18px rgba(0,0,0,0.6);
+        }
+
+        /* intro tekst */
+        .intro{
+            max-width:720px;
+            margin:0 auto 28px;
+            font-size:1.05rem;
+            color:rgba(255,255,255,0.85);
+        }
+
+        /* video layout */
+        .video-grid{
+            display:flex;
+            justify-content:center;
+            gap:24px;
+            flex-wrap:wrap;
+            margin-bottom:30px;
+        }
+
+        /* video card */
+        .video-thumb{
+            width:250px;
+            text-decoration:none;
+            color:inherit;
+        }
+
+        .video-thumb img{
+            width:100%;
+            border-radius:14px;
+            box-shadow:0 10px 24px rgba(0,0,0,0.45);
+            transition:transform .2s ease, box-shadow .2s ease;
+        }
+
+        .video-thumb:hover img{
+            transform:translateY(-4px);
+            box-shadow:0 18px 40px rgba(0,0,0,0.6);
+        }
+
+        .video-title{
+            margin-top:10px;
+            font-size:0.95rem;
+            color:rgba(255,255,255,0.9);
+        }
+
+        .video-thumb:hover .video-title{
+            color:#ffffff;
+        }
+
+        /* footer */
+        .footer-text{
+            margin-top:10px;
+            font-size:1rem;
+            color:rgba(255,255,255,0.6);
+        }
+
+        @media (max-width:600px){
+            .video-thumb{
+                width:85%;
             }
-        }
-
-        /* Vanaf desktop: 3 naast elkaar */
-        @media (min-width: 900px) {
-            .video-grid {
-                grid-template-columns: 1fr 1fr 1fr;
-            }
-        }
-
-        /* Responsive YouTube embeds */
-        .video {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 */
-            height: 0;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        .video iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .video-thumb {
-    width: 250px;              /* vaste breedte */
-    max-width: 250px;
-    flex: 0 0 auto;            /* voorkomt uitrekken */
-}
-
-.video-thumb img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* Bovenste afbeelding echt centreren */
-.header {
-    display: flex;
-    justify-content: center;   /* horizontaal centreren */
-    align-items: center;
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
-.header img {
-    max-width: 420px;          /* bepaalt hoe groot hij mag worden */
-    width: 90%;                /* schaalt op mobiel */
-    height: auto;
-    border-radius: 20px;
-    box-shadow: 0 10px 28px rgba(0,0,0,0.18);
-}
-
-        .footer-text {
-            font-size: 1.1rem;
-            color: #444;
         }
     </style>
 </head>
@@ -133,41 +129,41 @@
 
 <div class="container">
 
-    <!-- Groot plaatje -->
     <div class="header">
+        <a href="https://www.youtube.com/@dafnevermeulen">
         <img src="dafnevermeulen.png" alt="Dafne Vermeulen">
+        </a>
     </div>
-    <!-- Tekst boven -->
-    <h1>🎤 Hi everyone!</h1>
-    <p>
-        I’m 14 and I love to sing! 💕
-        On my YouTube channel I share my favorite songs, covers, and musical moments. Music means a lot to me, and I enjoy giving each song my own style and feeling.
 
-        I hope you enjoy listening as much as I enjoy singing! 💫
-        Don’t forget to like, comment, and subscribe if you’d like to follow my journey and hear more covers. 🎶✨
+    <h1>🎤 Hi everyone!</h1>
+
+    <p class="intro">
+        I’m 14 and I love to sing! 💕 On my YouTube channel I share my favorite songs,
+        covers, and musical moments. Music means a lot to me, and I enjoy giving each
+        song my own style and feeling.<br><br>
+        I hope you enjoy listening as much as I enjoy singing! 💫 Don’t forget to like,
+        comment, and subscribe if you’d like to follow my journey and hear more covers. 🎶✨
     </p>
 
-    <!-- 3 YouTube video's -->
     <div class="video-grid">
 
         <a class="video-thumb" href="https://www.youtube.com/watch?v=3qXxgJ3pqJE" target="_blank">
-            <img src="grijs.png" alt="Video grijs">
-            <p class="video-title">Grijs - Jaap Reesema</p>
+            <img src="grijs.png" alt="Grijs">
+            <div class="video-title">Grijs – Jaap Reesema</div>
         </a>
 
         <a class="video-thumb" href="https://www.youtube.com/watch?v=omMRvkSbirY" target="_blank">
-            <img src="loveonthebrain.png" alt="Video 2">
-            <p class="video-title">Love On The Brain - Rihanna</p>
+            <img src="loveonthebrain.png" alt="Love On The Brain">
+            <div class="video-title">Love On The Brain – Rihanna</div>
         </a>
 
         <a class="video-thumb" href="https://www.youtube.com/watch?v=B18xe1vSGNI" target="_blank">
-            <img src="hallelujah.png" alt="Video 3">
-            <p class="video-title">Hallelujah - Alexandra Burke</p>
+            <img src="hallelujah.png" alt="Hallelujah">
+            <div class="video-title">Hallelujah – Alexandra Burke</div>
         </a>
 
     </div>
 
-    <!-- Tekst onder -->
     <p class="footer-text">
         Dafne Vermeulen © 2026
     </p>
