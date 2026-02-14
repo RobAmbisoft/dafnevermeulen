@@ -1,137 +1,141 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Dafne Vermeulen</title>
 
     <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
+        * { margin:0; padding:0; box-sizing:border-box; }
+
+        :root{
+          --text: #1f242b;
+          --muted: rgba(31,36,43,0.72);
+          --card: rgba(255,255,255,0.72);
+          --card-border: rgba(255,255,255,0.55);
+          --shadow: 0 18px 50px rgba(0,0,0,0.18);
         }
 
         body{
-            font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-            line-height:1.6;
-            color:#f4f4f4;
+          font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+          line-height:1.6;
+          color: var(--text);
 
-            background:url("images/background.png") no-repeat center center fixed;
-            background-size:cover;
+          /* ✅ lichte muziek-achtergrond */
+          background: url("images/background.png") no-repeat center center fixed;
+          background-size: cover;
+
+          min-height: 100vh;
         }
 
-        /* zachte overlay zodat tekst leesbaar blijft */
+        /* ✅ lichte overlay + extra blur: blijft rustig, ook bij felle plekken */
         body::before{
-            content:"";
-            position:fixed;
-            inset:0;
-            background:rgba(0,0,0,0.25);
-            backdrop-filter:blur(2px);
-            z-index:-1;
+          content:"";
+          position:fixed;
+          inset:0;
+          background:
+            radial-gradient(circle at 50% 15%, rgba(255,255,255,0.78), rgba(255,255,255,0.52) 55%, rgba(255,255,255,0.40) 100%);
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
+          z-index:-1;
         }
 
         /* content card */
         .container{
-            max-width:900px;
-            margin:40px auto;
-            padding:30px 24px;
-            text-align:center;
-
-            background:rgba(255,255,255,0.05);
-            border-radius:24px;
-            backdrop-filter:blur(6px);
-            box-shadow:0 18px 50px rgba(0,0,0,0.35);
+          max-width: 920px;
+          margin: 32px auto;
+          padding: 28px 22px;
+          text-align:center;
         }
+
+        box-shadow: 0 25px 70px rgba(0,0,0,0.15);
 
         /* header afbeelding */
         .header{
-            display:flex;
-            justify-content:center;
-            margin-bottom:24px;
+          display:flex;
+          justify-content:center;
+          margin-bottom: 18px;
         }
 
         .header img{
-            width:min(420px,90%);
-            border-radius:20px;
-            box-shadow:0 12px 32px rgba(0,0,0,0.45);
+          width:min(420px,92%);
+          border-radius: 18px;
+          box-shadow: 0 12px 30px rgba(0,0,0,0.18);
         }
 
-        /* titel */
         h1{
-            font-size:clamp(28px,4vw,40px);
-            margin-bottom:12px;
-            text-shadow:0 4px 18px rgba(0,0,0,0.6);
+          font-size: clamp(28px, 4vw, 40px);
+          margin-bottom: 10px;
+          letter-spacing: -0.02em;
         }
 
-        /* intro tekst */
         .intro{
-            max-width:720px;
-            margin:0 auto 28px;
-            font-size:1.05rem;
-            color:rgba(255,255,255,0.85);
+          max-width: 720px;
+          margin: 0 auto 22px;
+          font-size: 1.05rem;
+          color: var(--muted);
         }
 
-        /* video layout */
         .video-grid{
-            display:flex;
-            justify-content:center;
-            gap:24px;
-            flex-wrap:wrap;
-            margin-bottom:30px;
+          display:flex;
+          justify-content:center;
+          gap: 22px;
+          flex-wrap: wrap;
+          margin-bottom: 22px;
         }
 
-        /* video card */
         .video-thumb{
-            width:250px;
-            text-decoration:none;
-            color:inherit;
+          width: 250px;
+          text-decoration:none;
+          color: inherit;
         }
 
         .video-thumb img{
-            width:100%;
-            border-radius:14px;
-            box-shadow:0 10px 24px rgba(0,0,0,0.45);
-            transition:transform .2s ease, box-shadow .2s ease;
+          width: 100%;
+          border-radius: 14px;
+          box-shadow: 0 10px 24px rgba(0,0,0,0.16);
+          transition: transform .2s ease, box-shadow .2s ease;
         }
 
         .video-thumb:hover img{
-            transform:translateY(-4px);
-            box-shadow:0 18px 40px rgba(0,0,0,0.6);
+          transform: translateY(-4px);
+          box-shadow: 0 18px 40px rgba(0,0,0,0.22);
         }
 
         .video-title{
-            margin-top:10px;
-            font-size:0.95rem;
-            color:rgba(255,255,255,0.9);
+          margin-top: 10px;
+          font-size: 0.95rem;
+          color: rgba(31,36,43,0.86);
         }
 
         .video-thumb:hover .video-title{
-            color:#ffffff;
+          color: rgba(31,36,43,1);
         }
 
-        /* footer */
         .footer-text{
-            margin-top:10px;
-            font-size:1rem;
-            color:rgba(255,255,255,0.6);
+          margin-top: 8px;
+          font-size: 0.95rem;
+          color: rgba(31,36,43,0.55);
         }
 
-        @media (max-width:600px){
-            .video-thumb{
-                width:85%;
-            }
+        @media (max-width: 600px){
+          .container{
+            margin: 18px 12px;
+            padding: 22px 16px;
+          }
+          .video-thumb{
+            width: 92%;
+          }
         }
     </style>
 </head>
 
 <body>
-
 <div class="container">
-
     <div class="header">
-        <a href="https://www.youtube.com/@dafnevermeulen?sub_confirmation=1" target="_blank">
-        <img src="images/dafnevermeulen.png" alt="Dafne Vermeulen">
+        <a href="https://www.youtube.com/@dafnevermeulen?sub_confirmation=1" target="_blank"
+           rel="noopener">
+            <img src="images/dafnevermeulen.png" alt="Dafne Vermeulen">
         </a>
     </div>
 
@@ -146,29 +150,26 @@
     </p>
 
     <div class="video-grid">
-
-        <a class="video-thumb" href="https://www.youtube.com/watch?v=3qXxgJ3pqJE" target="_blank">
+        <a class="video-thumb" href="https://www.youtube.com/watch?v=3qXxgJ3pqJE" target="_blank"
+           rel="noopener">
             <img src="images/grijs.png" alt="Grijs">
             <div class="video-title">Grijs – Jaap Reesema</div>
         </a>
 
-        <a class="video-thumb" href="https://www.youtube.com/watch?v=omMRvkSbirY" target="_blank">
+        <a class="video-thumb" href="https://www.youtube.com/watch?v=omMRvkSbirY" target="_blank"
+           rel="noopener">
             <img src="images/loveonthebrain.png" alt="Love On The Brain">
             <div class="video-title">Love On The Brain – Rihanna</div>
         </a>
 
-        <a class="video-thumb" href="https://www.youtube.com/watch?v=B18xe1vSGNI" target="_blank">
+        <a class="video-thumb" href="https://www.youtube.com/watch?v=B18xe1vSGNI" target="_blank"
+           rel="noopener">
             <img src="images/hallelujah.png" alt="Hallelujah">
             <div class="video-title">Hallelujah – Alexandra Burke</div>
         </a>
-
     </div>
 
-    <p class="footer-text">
-        Dafne Vermeulen © 2026
-    </p>
-
+    <p class="footer-text">Dafne Vermeulen © 2026</p>
 </div>
-
 </body>
 </html>
